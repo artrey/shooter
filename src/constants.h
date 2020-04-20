@@ -1,0 +1,6 @@
+#ifndef SHOOTER_CONSTANTS_H
+#define SHOOTER_CONSTANTS_H
+
+constexpr float DEFAULT_STEP = 10.0;
+
+#endif //SHOOTER_CONSTANTS_H
