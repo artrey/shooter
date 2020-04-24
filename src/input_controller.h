@@ -1,6 +1,9 @@
 #ifndef SHOOTER_INPUT_CONTROLLER_H
 #define SHOOTER_INPUT_CONTROLLER_H
 
+#include <SFML/Graphics.hpp>
+#include "game.h"
+
 namespace shooter
 {
     enum class Movements
@@ -13,6 +16,14 @@ namespace shooter
 
     class InputController
     {
+    private:
+        sf::Window& m_window;
+        shooter::Game& m_game;
+
+    public:
+        explicit InputController(sf::Window& window, shooter::Game& game);
+
+        void processEvent(sf::Event const& event);
     };
 }
 

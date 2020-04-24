@@ -2,14 +2,11 @@
 #include <cmath>
 
 #include "fps.h"
+#include "resource_manager.h"
 
 shooter::FpsCounter::FpsCounter() : m_fps{0}, m_frames{0}
 {
-    if (!m_font.loadFromFile("Cousine-Regular.ttf"))
-    {
-        std::cout << "Font not loaded!\n";
-    }
-    m_fpsText.setFont(m_font);
+    m_fpsText.setFont(ResourceManager::getDefaultFont());
     m_fpsText.setCharacterSize(16);
     m_fpsText.setFillColor(sf::Color::White);
     m_fpsText.setOutlineThickness(2);

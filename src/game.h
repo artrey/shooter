@@ -16,16 +16,18 @@ namespace shooter
     class Game : public sf::Drawable, public Updateable
     {
     private:
+        sf::Window& m_window;
         GameState m_state;
         std::unique_ptr<View> m_currentView;
         FpsCounter m_fpsCounter;
 
     public:
-        Game();
+        explicit Game(sf::Window& window);
 
+        sf::Window& window();
         GameState& state();
 
-        void nextScreen();
+        void processKey(sf::Event::KeyEvent const& key);
 
         void update() override;
 

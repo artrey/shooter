@@ -5,15 +5,32 @@ project(shooter VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME}
+set(HEADER_FILES
+        src/constants.h
+        src/fps.h
+        src/game.h
+        src/input_controller.h
+        src/resource_manager.h
+        src/updateable.h
+        src/views/view.h
+        src/views/game_view.h
+        src/views/menu_view.h
+)
+
+set(SOURCE_FILES
         src/main.cpp
         src/fps.cpp
         src/game.cpp
         src/input_controller.cpp
-        src/updateable.h
+        src/resource_manager.cpp
         src/views/view.cpp
         src/views/menu_view.cpp
         src/views/game_view.cpp
+)
+
+add_executable(${PROJECT_NAME}
+        ${HEADER_FILES}
+        ${SOURCE_FILES}
 )
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

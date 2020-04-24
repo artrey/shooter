@@ -12,12 +12,13 @@ namespace shooter
     {
     protected:
         const std::string m_title;
+        Game& m_game;
 
     public:
-        explicit View(std::string title);
+        View(std::string_view title, Game& game);
         ~View() override;
 
-        virtual void nextScreen(Game& game) = 0;
+        virtual void processKey(sf::Event::KeyEvent const& key) = 0;
 
         [[nodiscard]] std::string title() const;
     };

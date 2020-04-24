@@ -1,9 +1,10 @@
+#include <iostream>
 #include "../game.h"
 #include "game_view.h"
 #include "menu_view.h"
 
-shooter::GameView::GameView(shooter::GameState &state)
-    : View("game"), m_state{state}
+shooter::GameView::GameView(Game& game)
+    : View("game", game)
 {
 }
 
@@ -15,7 +16,14 @@ void shooter::GameView::update()
 {
 }
 
-void shooter::GameView::nextScreen(shooter::Game &game)
+void shooter::GameView::processKey(const sf::Event::KeyEvent &key)
 {
-    game.setView(std::make_unique<MenuView>());
+    if (key.code == sf::Keyboard::Escape)
+    {
+        m_game.setView(std::make_unique<MenuView>(m_game));
+    }
+    else
+    {
+        std::cout << "Pressed unsupported key in game: " << key.code << std::endl;
+    }
 }

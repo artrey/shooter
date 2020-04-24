@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "game.h"
-#include <iostream>
+#include "input_controller.h"
 
 int main()
 {
@@ -8,33 +8,15 @@ int main()
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title, sf::Style::None);
     window.setFramerateLimit(60);
 
-    shooter::Game game{};
+    shooter::Game game(window);
+    shooter::InputController input(window, game);
 
     while (window.isOpen())
     {
         sf::Event event{};
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-            else if (event.type == sf::Event::KeyPressed)
-            {
-                switch (event.key.code)
-                {
-                    case sf::Keyboard::Escape:
-                        window.close();
-                        break;
-
-                    case sf::Keyboard::Return:
-                        game.nextScreen();
-                        break;
-
-                    default:
-                        break;
-                }
-            }
+            input.processEvent(event);
         }
 
         game.update();

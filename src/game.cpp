@@ -4,8 +4,9 @@
 #include "views/game_view.h"
 #include "views/menu_view.h"
 
-shooter::Game::Game()
-    : m_state{}, m_currentView{new MenuView}, m_fpsCounter{}
+
+shooter::Game::Game(sf::Window &window)
+    : m_window{window}, m_state{}, m_currentView{new MenuView(*this)}, m_fpsCounter{}
 {
 }
 
@@ -26,12 +27,17 @@ void shooter::Game::setView(std::unique_ptr<View> view)
     m_currentView = std::move(view);
 }
 
-void shooter::Game::nextScreen()
+sf::Window &shooter::Game::window()
 {
-    m_currentView->nextScreen(*this);
+    return m_window;
 }
 
 shooter::GameState &shooter::Game::state()
 {
     return m_state;
+}
+
+void shooter::Game::processKey(const sf::Event::KeyEvent &key)
+{
+    m_currentView->processKey(key);
 }

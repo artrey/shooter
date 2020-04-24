@@ -16,7 +16,6 @@ namespace shooter
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
     private:
-        sf::Font m_font;
         sf::Text m_fpsText;
         sf::Clock m_timer;
         float m_fps;

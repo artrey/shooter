@@ -7,12 +7,15 @@ namespace shooter
 {
     class MenuView : public View
     {
+    private:
+        sf::Text m_text;
+
     public:
-        MenuView();
+        explicit MenuView(Game& game);
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void update() override;
 
-        void nextScreen(Game& game) override;
+        void processKey(sf::Event::KeyEvent const& key) override;
     };
 }
 
