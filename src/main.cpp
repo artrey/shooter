@@ -5,7 +5,7 @@
 int main()
 {
     const char *title = "Shooter";
-    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title, sf::Style::None);
     window.setFramerateLimit(60);
 
     shooter::Game game{};
@@ -27,7 +27,7 @@ int main()
                         window.close();
                         break;
 
-                    case sf::Keyboard::Enter:
+                    case sf::Keyboard::Return:
                         game.nextScreen();
                         break;
 
