@@ -4,6 +4,8 @@
 #include <memory>
 #include <unordered_map>
 
+#include <SFML/Graphics.hpp>
+
 #include "views/view.h"
 #include "fps.h"
 

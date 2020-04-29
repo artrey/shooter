@@ -21,6 +21,13 @@ namespace shooter
         shooter::Game& m_game;
 
     public:
+
+        /**
+         * @brief processor for all interactivity actions
+         *
+         * @param window
+         * @param game shooter::Game& instance
+         */
         explicit InputController(sf::Window& window, shooter::Game& game);
 
         void processEvent(sf::Event const& event);

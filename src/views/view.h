@@ -2,6 +2,7 @@
 #define SHOOTER_VIEW_H
 
 #include <SFML/Graphics.hpp>
+
 #include "../updateable.h"
 
 namespace shooter
@@ -16,6 +17,7 @@ namespace shooter
 
     public:
         View(std::string_view title, Game& game);
+
         ~View() override;
 
         virtual void processKey(sf::Event::KeyEvent const& key) = 0;

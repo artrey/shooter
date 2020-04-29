@@ -18,7 +18,7 @@ namespace shooter
     private:
         sf::Text m_fpsText;
         sf::Clock m_timer;
-        float m_fps;
+        sf::Clock m_delayTimer;
         int m_frames;
     };
 }

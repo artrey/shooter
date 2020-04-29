@@ -6,7 +6,7 @@ int main()
 {
     const char *title = "Shooter";
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title, sf::Style::None);
-    window.setFramerateLimit(60);
+//    window.setFramerateLimit(60);
 
     shooter::Game game(window);
     shooter::InputController input(window, game);
