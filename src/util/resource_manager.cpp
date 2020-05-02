@@ -1,6 +1,6 @@
 #include <iostream>
 #include "resource_manager.h"
-#include "constants.h"
+#include "../constants.h"
 
 std::unordered_map<std::string, sf::Font> shooter::ResourceManager::m_fonts = {};
 

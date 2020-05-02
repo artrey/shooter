@@ -10,11 +10,12 @@ set(HEADER_FILES
         src/fps.h
         src/game.h
         src/input_controller.h
-        src/resource_manager.h
         src/updateable.h
         src/views/view.h
         src/views/game_view.h
         src/views/menu_view.h
+        src/util/resource_manager.h
+        src/util/text_builder.h
 )
 
 set(SOURCE_FILES
@@ -22,10 +23,11 @@ set(SOURCE_FILES
         src/fps.cpp
         src/game.cpp
         src/input_controller.cpp
-        src/resource_manager.cpp
         src/views/view.cpp
         src/views/menu_view.cpp
         src/views/game_view.cpp
+        src/util/resource_manager.cpp
+        src/util/text_builder.cpp
 )
 
 add_executable(${PROJECT_NAME}

@@ -1,7 +1,7 @@
 #include <cmath>
 
 #include "fps.h"
-#include "resource_manager.h"
+#include "util/resource_manager.h"
 #include "constants.h"
 
 shooter::FpsCounter::FpsCounter() : m_frames{0}

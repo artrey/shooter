@@ -5,7 +5,8 @@
 #include "game_view.h"
 #include "../constants.h"
 #include "../game.h"
-#include "../resource_manager.h"
+#include "../util/resource_manager.h"
+#include "../util/text_builder.h"
 
 shooter::MenuView::MenuView(Game& game)
     : View("menu", game), m_optionIndex{0}
@@ -25,14 +26,7 @@ shooter::MenuView::MenuView(Game& game)
         }},
     };
 
-    // TODO: pattern builder for sf::Text (+ director)
-    // TODO: m_titleText = TextBuilder::defaultFont().setSize(60).setText(L"some text").build();
-    // TODO: or
-    // TODO: TextBuilder(m_titleText).setDefaultFont().setSize(60).setText(L"some text");
-    m_titleText.setFont(ResourceManager::getDefaultFont());
-    m_titleText.setCharacterSize(60);
-    m_titleText.setFillColor(MAIN_COLOR);
-    m_titleText.setString(L"Меню");
+    m_titleText = TextBuilder::defaultParameters().setSize(60).setText(L"Меню").build();
     sf::Vector2u windowSize = m_game.window().getSize();
     m_titleText.setPosition((windowSize.x - m_titleText.getLocalBounds().width) / 2,
         (windowSize.y - m_titleText.getLocalBounds().height) / 4);
@@ -40,8 +34,7 @@ shooter::MenuView::MenuView(Game& game)
     float y = static_cast<float>(windowSize.y) / 2;
     for (auto& option : m_options)
     {
-        sf::Text text(option.first, ResourceManager::getDefaultFont(), 44);
-        text.setFillColor(sf::Color::White);
+        sf::Text text = TextBuilder::defaultParameters().setSize(44).setText(option.first).build();
         text.setPosition((windowSize.x - text.getLocalBounds().width) / 2, y);
         y += text.getLocalBounds().height + 40;
         m_choices.push_back(text);
