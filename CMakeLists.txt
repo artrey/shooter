@@ -45,4 +45,5 @@ find_package(SFML REQUIRED graphics window system)
 target_link_libraries(${PROJECT_NAME}
         ${SFML_LIBRARIES}
         ${SFML_DEPENDENCIES}
+        stdc++fs  # for std::filesystem
 )

@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Color.hpp>
 
 // TODO: make changeable class (for customizing settings from menu)
+static const std::string RESOURCES_DIR = "resources";
 static const std::string DEFAULT_FONT = "Cousine-Regular.ttf";
 static const unsigned DEFAULT_FONT_SIZE = 32;
 static const sf::Color MAIN_COLOR = sf::Color::White;
