@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../game.h"
 #include "game_view.h"
 #include "menu_view.h"
+#include "../game.h"
 
 shooter::GameView::GameView(Game& game)
     : View("game", game)

@@ -1,12 +1,12 @@
 #include <cmath>
 
-#include "fps.h"
-#include "util/resource_manager.h"
 #include "constants.h"
+#include "fps.h"
+#include "util/resources_manager.h"
 
 shooter::FpsCounter::FpsCounter() : m_frames{0}
 {
-    m_fpsText.setFont(ResourceManager::getDefaultFont());
+    m_fpsText.setFont(ResourcesManager::getDefaultFont());
     m_fpsText.setCharacterSize(16);
     m_fpsText.setFillColor(MAIN_COLOR);
 

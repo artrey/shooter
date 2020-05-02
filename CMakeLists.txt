@@ -14,7 +14,8 @@ set(HEADER_FILES
         src/views/view.h
         src/views/game_view.h
         src/views/menu_view.h
-        src/util/resource_manager.h
+        src/util/fs.h
+        src/util/resources_manager.h
         src/util/text_builder.h
 )
 
@@ -26,7 +27,8 @@ set(SOURCE_FILES
         src/views/view.cpp
         src/views/menu_view.cpp
         src/views/game_view.cpp
-        src/util/resource_manager.cpp
+        src/util/fs.cpp
+        src/util/resources_manager.cpp
         src/util/text_builder.cpp
 )
 

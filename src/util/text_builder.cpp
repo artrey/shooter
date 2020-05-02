@@ -1,7 +1,6 @@
 #include "text_builder.h"
 
-#include <utility>
-#include "resource_manager.h"
+#include "resources_manager.h"
 #include "../constants.h"
 
 shooter::TextBuilder::TextBuilder() = default;
@@ -19,7 +18,7 @@ shooter::TextBuilder& shooter::TextBuilder::setSize(unsigned size)
 
 shooter::TextBuilder& shooter::TextBuilder::setFont(std::string const& fontName)
 {
-    m_text.setFont(ResourceManager::getFont(fontName));
+    m_text.setFont(ResourcesManager::getFont(fontName));
     return *this;
 }
 

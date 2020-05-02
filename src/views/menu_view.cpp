@@ -1,11 +1,9 @@
-#include <functional>
 #include <iostream>
 
 #include "menu_view.h"
 #include "game_view.h"
 #include "../constants.h"
 #include "../game.h"
-#include "../util/resource_manager.h"
 #include "../util/text_builder.h"
 
 shooter::MenuView::MenuView(Game& game)
