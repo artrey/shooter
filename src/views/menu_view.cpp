@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "menu_view.h"
 #include "game_view.h"
 #include "../constants.h"
@@ -11,30 +9,36 @@ shooter::MenuView::MenuView(Game& game)
 {
     m_options = {
         {
-            L"Новая игра", [this]() {
+            NEW_GAME_OPTION, [this]() {
+            m_game.state().reset();
             m_game.setView(std::make_unique<GameView>(m_game));
         }},
         {
-            L"Настройки",  [this]() {
-            std::cout << "Settings\n";
-        }},
-        {
-            L"Выйти",      [this]() {
+            EXIT_OPTION,     [this]() {
             m_game.window().close();
         }},
     };
 
-    m_titleText = TextBuilder::defaultParameters().setSize(60).setText(L"Меню").build();
+    if (m_game.state().time() > 0)
+    {
+        m_options.insert(std::begin(m_options), {
+            RESUME_GAME_OPTION, [this]() {
+                m_game.setView(std::make_unique<GameView>(m_game));
+            }}
+        );
+    }
+
+    m_titleText = TextBuilder::defaultParameters().setSize(60).setText(GAME_TITLE).build();
     sf::Vector2u windowSize = m_game.window().getSize();
-    m_titleText.setPosition((windowSize.x - m_titleText.getLocalBounds().width) / 2,
-        (windowSize.y - m_titleText.getLocalBounds().height) / 4);
+    m_titleText.setPosition((windowSize.x - m_titleText.getGlobalBounds().width) / 2,
+        (windowSize.y - m_titleText.getGlobalBounds().height) / 4);
 
     float y = static_cast<float>(windowSize.y) / 2;
     for (auto& option : m_options)
     {
         sf::Text text = TextBuilder::defaultParameters().setSize(44).setText(option.first).build();
-        text.setPosition((windowSize.x - text.getLocalBounds().width) / 2, y);
-        y += text.getLocalBounds().height + 40;
+        text.setPosition((windowSize.x - text.getGlobalBounds().width) / 2, y);
+        y += text.getGlobalBounds().height + 40;
         m_choices.push_back(text);
     }
 }

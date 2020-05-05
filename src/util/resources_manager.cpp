@@ -13,20 +13,24 @@ shooter::ResourcesManager& shooter::ResourcesManager::instance()
     if (!m_manager)
     {
         m_manager.reset(new ResourcesManager);
-
-        m_manager->m_resourcesPath = findFolder(fs::current_path(), RESOURCES_DIR);
-        if (m_manager->m_resourcesPath.empty())
-        {
-            m_manager->m_resourcesPath = findFolder(fs::current_path().parent_path(), RESOURCES_DIR);
-        }
-
-        if (m_manager->m_resourcesPath.empty())
-        {
-            m_manager.reset();  // removing invalid manager
-            throw std::runtime_error("Resources folder '" + RESOURCES_DIR + "' not found!");
-        }
     }
     return *m_manager;
+}
+
+void shooter::ResourcesManager::init(std::string const& resourcesFolder)
+{
+    ResourcesManager& manager = instance();
+
+    manager.m_resourcesPath = findFolder(fs::current_path(), resourcesFolder);
+    if (manager.m_resourcesPath.empty())
+    {
+        manager.m_resourcesPath = findFolder(fs::current_path().parent_path(), resourcesFolder);
+    }
+
+    if (manager.m_resourcesPath.empty())
+    {
+        throw std::runtime_error("Resources folder '" + resourcesFolder + "' not found!");
+    }
 }
 
 sf::Font const& shooter::ResourcesManager::getFont(std::string const& name)

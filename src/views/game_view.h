@@ -7,9 +7,14 @@ namespace shooter
 {
     class GameView : public View
     {
+    private:
+        sf::Sprite m_ship;
+
     public:
         explicit GameView(Game& game);
+
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
         void update() override;
 
         void processKey(sf::Event::KeyEvent const& key) override;

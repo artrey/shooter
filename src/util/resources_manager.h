@@ -23,6 +23,8 @@ namespace shooter
         static std::unique_ptr<ResourcesManager> m_manager;
 
     public:
+        static void init(std::string const& resourcesFolder);
+
         static sf::Font const& getFont(std::string const& name);
         static sf::Font const& getDefaultFont();
 

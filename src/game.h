@@ -13,6 +13,17 @@ namespace shooter
 {
     class GameState
     {
+    private:
+        std::uint64_t m_time;
+
+    public:
+        GameState() : m_time{0} {};
+
+        [[nodiscard]] std::uint64_t time() const { return m_time; }
+
+        std::uint64_t incTime() { return ++m_time; }
+
+        void reset() { m_time = 0; }
     };
 
     class Game : public sf::Drawable, public Updateable
@@ -27,13 +38,14 @@ namespace shooter
         explicit Game(sf::Window& window);
 
         sf::Window& window();
+
         GameState& state();
 
         void processKey(sf::Event::KeyEvent const& key);
 
         void update() override;
 
-        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
         void setView(std::unique_ptr<View> view);
     };
