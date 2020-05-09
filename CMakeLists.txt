@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
 project(shooter VERSION 1.0 LANGUAGES CXX)
 
@@ -49,5 +49,9 @@ find_package(SFML REQUIRED graphics window system)
 target_link_libraries(${PROJECT_NAME}
         ${SFML_LIBRARIES}
         ${SFML_DEPENDENCIES}
-        stdc++fs  # for std::filesystem
 )
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_link_libraries(${PROJECT_NAME}
+                stdc++fs  # for std::filesystem
+        )
+endif()
