@@ -27,6 +27,14 @@ namespace shooter
     {
         obj.setPosition(findObjectPos(obj, bbox, offset));
     }
+
+    sf::RectangleShape shot(sf::Vector2f const& pos)
+    {
+        sf::RectangleShape bullet{BULLET_SIZE};
+        bullet.setFillColor(BULLET_COLOR);
+        bullet.setPosition(pos);
+        return bullet;
+    }
 }
 
 shooter::GameView::GameView(Game& game)
@@ -36,17 +44,67 @@ shooter::GameView::GameView(Game& game)
     m_ship.scale(0.5, 0.5);
     sf::FloatRect shipBbox = m_ship.getGlobalBounds();
     sf::Vector2u size = m_game.window().getSize();
-    m_ship.setPosition((size.x - shipBbox.width) / 2, size.y - shipBbox.height);
+    if (m_game.state().milliseconds() > 0)
+    {
+        m_ship.setPosition(m_game.state().shipPos);
+    }
+    else
+    {
+        m_ship.setPosition((size.x - shipBbox.width) / 2, size.y - shipBbox.height);
+    }
+    m_game.state().timer.start();
+    m_game.state().shotTimer.start();
+    m_game.state().bulletsTimer.start();
+}
+
+shooter::GameView::~GameView()
+{
+    m_game.state().timer.stop();
+    m_game.state().shotTimer.stop();
+    m_game.state().bulletsTimer.stop();
 }
 
 void shooter::GameView::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(m_ship);
+    for (auto& b : m_game.state().bullets)
+    {
+        target.draw(b);
+    }
 }
 
 void shooter::GameView::update()
 {
-    std::cout << m_game.state().incTime() << "\n";
+    sf::Vector2f const& pos = m_ship.getPosition();
+    m_game.state().shipPos = pos;
+
+    auto& bullets = m_game.state().bullets;
+
+    // removing invisible bullets
+    bullets.erase(std::remove_if(std::begin(bullets),
+        std::end(bullets), [](sf::RectangleShape const& b) {
+            return b.getPosition().y < -b.getSize().y;
+        }), std::end(bullets));
+
+    if (m_game.state().shotTimer.milliseconds() > 500)
+    {
+        bullets.push_back(shot({
+            pos.x + m_ship.getGlobalBounds().width / 2 - BULLET_SIZE.x,
+            pos.y - BULLET_SIZE.y
+        }));
+        m_game.state().shotTimer.reset();
+    }
+
+    if (m_game.state().bulletsTimer.milliseconds() > 10)
+    {
+        for (auto& b : bullets)
+        {
+            b.move(0, -5);
+        }
+        m_game.state().bulletsTimer.reset();
+    }
+
+    std::cout << m_game.state().milliseconds() << "\n";
 }
 
 void shooter::GameView::processKey(const sf::Event::KeyEvent& key)

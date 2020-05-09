@@ -17,6 +17,7 @@ set(HEADER_FILES
         src/util/fs.h
         src/util/resources_manager.h
         src/util/text_builder.h
+        src/util/timer.h
 )
 
 set(SOURCE_FILES
@@ -30,6 +31,7 @@ set(SOURCE_FILES
         src/util/fs.cpp
         src/util/resources_manager.cpp
         src/util/text_builder.cpp
+        src/util/timer.cpp
 )
 
 add_executable(${PROJECT_NAME}

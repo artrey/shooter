@@ -12,6 +12,7 @@ namespace shooter
 
     public:
         explicit GameView(Game& game);
+        ~GameView() override;
 
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

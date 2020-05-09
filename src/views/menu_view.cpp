@@ -19,7 +19,7 @@ shooter::MenuView::MenuView(Game& game)
         }},
     };
 
-    if (m_game.state().time() > 0)
+    if (m_game.state().milliseconds() > 0)
     {
         m_options.insert(std::begin(m_options), {
             RESUME_GAME_OPTION, [this]() {

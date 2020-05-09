@@ -6,24 +6,27 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "views/view.h"
 #include "fps.h"
+#include "views/view.h"
+#include "util/timer.h"
 
 namespace shooter
 {
     class GameState
     {
-    private:
-        std::uint64_t m_time;
+    public:
+        shooter::Timer timer;
+        sf::Vector2f shipPos;
+        std::vector<sf::RectangleShape> bullets;
+        shooter::Timer shotTimer;
+        shooter::Timer bulletsTimer;
 
     public:
-        GameState() : m_time{0} {};
+        GameState() : timer{}, shipPos{}, bullets{}, shotTimer{} {};
 
-        [[nodiscard]] std::uint64_t time() const { return m_time; }
+        [[nodiscard]] std::int64_t milliseconds() const { return timer.milliseconds(); }
 
-        std::uint64_t incTime() { return ++m_time; }
-
-        void reset() { m_time = 0; }
+        void reset() { *this = GameState{}; }
     };
 
     class Game : public sf::Drawable, public Updateable
