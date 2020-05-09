@@ -22,10 +22,15 @@ namespace shooter
         static ResourcesManager& instance();
         static std::unique_ptr<ResourcesManager> m_manager;
 
+    private:
+        [[nodiscard]] static std::string combineFontPath(std::string const& fontName);
+        [[nodiscard]] static std::string combineImagePath(std::string const& imageName);
+
     public:
         static void init(std::string const& resourcesFolder);
 
         static sf::Font const& getFont(std::string const& name);
+
         static sf::Font const& getDefaultFont();
 
         static sf::Texture const& getTexture(std::string const& name);

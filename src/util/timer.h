@@ -1,6 +1,7 @@
 #ifndef SHOOTER_TIMER_H
 #define SHOOTER_TIMER_H
 
+#include <cstdint>
 #include <chrono>
 #include <SFML/System/Clock.hpp>
 

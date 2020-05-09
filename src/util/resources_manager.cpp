@@ -17,6 +17,16 @@ shooter::ResourcesManager& shooter::ResourcesManager::instance()
     return *m_manager;
 }
 
+std::string shooter::ResourcesManager::combineFontPath(const std::string& fontName)
+{
+    return (instance().m_resourcesPath / "fonts" / fontName).string();
+}
+
+std::string shooter::ResourcesManager::combineImagePath(const std::string& imageName)
+{
+    return (instance().m_resourcesPath / "images" / imageName).string();
+}
+
 void shooter::ResourcesManager::init(std::string const& resourcesFolder)
 {
     ResourcesManager& manager = instance();
@@ -37,7 +47,7 @@ sf::Font const& shooter::ResourcesManager::getFont(std::string const& name)
 {
     if (!instance().m_fonts.count(name))
     {
-        if (!instance().m_fonts[name].loadFromFile(instance().m_resourcesPath / "fonts" / name))
+        if (!instance().m_fonts[name].loadFromFile(combineFontPath(name)))
         {
             throw std::runtime_error("Font '" + name + "' not loaded!");
         }
@@ -54,7 +64,7 @@ sf::Texture const& shooter::ResourcesManager::getTexture(std::string const& name
 {
     if (!instance().m_textures.count(name))
     {
-        if (!instance().m_textures[name].loadFromFile(instance().m_resourcesPath / "images" / name))
+        if (!instance().m_textures[name].loadFromFile(combineImagePath(name)))
         {
             throw std::runtime_error("Texture '" + name + "' not loaded!");
         }
