@@ -80,12 +80,6 @@ void shooter::GameView::update()
 
     auto& bullets = m_game.state().bullets;
 
-    // removing invisible bullets
-    bullets.erase(std::remove_if(std::begin(bullets),
-        std::end(bullets), [](sf::RectangleShape const& b) {
-            return b.getPosition().y < -b.getSize().y;
-        }), std::end(bullets));
-
     if (m_game.state().shotTimer.milliseconds() > 500)
     {
         bullets.push_back(shot({
@@ -99,10 +93,16 @@ void shooter::GameView::update()
     {
         for (auto& b : bullets)
         {
-            b.move(0, -5);
+            b.move(0, -1.0f * m_game.state().bulletsTimer.milliseconds() / 10);
         }
         m_game.state().bulletsTimer.reset();
     }
+
+    // removing invisible bullets
+    bullets.erase(std::remove_if(std::begin(bullets),
+        std::end(bullets), [](sf::RectangleShape const& b) {
+            return b.getPosition().y < -b.getSize().y;
+        }), std::end(bullets));
 
     std::cout << m_game.state().milliseconds() << "\n";
 }
@@ -113,6 +113,7 @@ void shooter::GameView::processKey(const sf::Event::KeyEvent& key)
         moveObject(m_ship, m_game.window().getSize(), offset);
     };
 
+    // TODO: make direction vector and apply it to ship in update() method
     switch (key.code)
     {
         case sf::Keyboard::Escape:
@@ -134,3 +135,5 @@ void shooter::GameView::processKey(const sf::Event::KeyEvent& key)
             break;
     }
 }
+
+// TODO: add processKeyReleased and correct the direction vector
