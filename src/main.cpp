@@ -35,7 +35,8 @@ int main()
     catch (std::exception const& ex)
     {
         std::cout << ex.what() << std::endl;
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
