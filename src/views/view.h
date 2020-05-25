@@ -20,7 +20,8 @@ namespace shooter
 
         ~View() override;
 
-        virtual void processKey(sf::Event::KeyEvent const& key) = 0;
+        virtual void processKeyPressed(sf::Event::KeyEvent const& key) = 0;
+        virtual void processKeyReleased(sf::Event::KeyEvent const& key) = 0;
 
         [[nodiscard]] std::string title() const;
     };

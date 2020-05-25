@@ -10,10 +10,10 @@ shooter::Game::Game(sf::Window &window)
 {
 }
 
-void shooter::Game::update()
+void shooter::Game::update(sf::Time const& time)
 {
-    m_currentView->update();
-    m_fpsCounter.update();
+    m_currentView->update(time);
+    m_fpsCounter.update(time);
 }
 
 void shooter::Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -37,7 +37,12 @@ shooter::GameState &shooter::Game::state()
     return m_state;
 }
 
-void shooter::Game::processKey(const sf::Event::KeyEvent &key)
+void shooter::Game::processKeyPressed(const sf::Event::KeyEvent &key)
 {
-    m_currentView->processKey(key);
+    m_currentView->processKeyPressed(key);
+}
+
+void shooter::Game::processKeyReleased(const sf::Event::KeyEvent& key)
+{
+    m_currentView->processKeyReleased(key);
 }

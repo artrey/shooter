@@ -5,6 +5,9 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
 
+// Global constants
+static const double EPSILON = 10e-6;
+
 // TODO: make changeable class (for customizing settings from menu)
 static const std::wstring GAME_TITLE = L"SPACE SHOOTER";
 static const std::wstring NEW_GAME_OPTION = L"Новая игра";
@@ -19,6 +22,8 @@ static const sf::Color MAIN_COLOR = sf::Color::White;
 static const sf::Color OPTION_SELECTED_COLOR = sf::Color(250, 180, 2);
 static const sf::Vector2f BULLET_SIZE = {8, 40};
 static const sf::Color BULLET_COLOR = sf::Color::Green;
-static const int SHIFT_POS = 10;
+static const float SHIP_SPEED_PPS = 190;
+static const float SHIP_EMIT_BULLET_PER_SEC = 2;
+static const float BULLET_SPEED_PPS = 240;
 
 #endif //SHOOTER_CONSTANTS_H

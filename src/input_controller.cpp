@@ -13,11 +13,10 @@ void shooter::InputController::processEvent(const sf::Event& event)
     }
     else if (event.type == sf::Event::KeyPressed)
     {
-        // TODO: rename processKey to processKeyPressed
-        m_game.processKey(event.key);
+        m_game.processKeyPressed(event.key);
     }
     else if (event.type == sf::Event::KeyReleased)
     {
-        // TODO: call processKeyReleased on game
+        m_game.processKeyReleased(event.key);
     }
 }

@@ -32,3 +32,8 @@ std::int64_t shooter::Timer::milliseconds() const
 {
     return time().count();
 }
+
+float shooter::Timer::seconds() const
+{
+    return milliseconds() / 1000.f;
+}

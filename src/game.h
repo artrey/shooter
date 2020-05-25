@@ -7,28 +7,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "fps.h"
+#include "game_state.h"
 #include "views/view.h"
 #include "util/timer.h"
 
 namespace shooter
 {
-    class GameState
-    {
-    public:
-        shooter::Timer timer;
-        sf::Vector2f shipPos;
-        std::vector<sf::RectangleShape> bullets;
-        shooter::Timer shotTimer;
-        shooter::Timer bulletsTimer;
-
-    public:
-        GameState() : timer{}, shipPos{}, bullets{}, shotTimer{} {};
-
-        [[nodiscard]] std::int64_t milliseconds() const { return timer.milliseconds(); }
-
-        void reset() { *this = GameState{}; }
-    };
-
     class Game : public sf::Drawable, public Updateable
     {
     private:
@@ -44,9 +28,10 @@ namespace shooter
 
         GameState& state();
 
-        void processKey(sf::Event::KeyEvent const& key);
+        void processKeyPressed(sf::Event::KeyEvent const& key);
+        void processKeyReleased(sf::Event::KeyEvent const& key);
 
-        void update() override;
+        void update(sf::Time const& time) override;
 
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

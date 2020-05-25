@@ -19,12 +19,12 @@ shooter::ResourcesManager& shooter::ResourcesManager::instance()
 
 std::string shooter::ResourcesManager::combineFontPath(const std::string& fontName)
 {
-    return (instance().m_resourcesPath / "fonts" / fontName).string();
+    return (instance().m_resourcesPath / FONTS_RELATIVE_DIR / fontName).string();
 }
 
 std::string shooter::ResourcesManager::combineImagePath(const std::string& imageName)
 {
-    return (instance().m_resourcesPath / "images" / imageName).string();
+    return (instance().m_resourcesPath / IMAGES_RELATIVE_DIR / imageName).string();
 }
 
 void shooter::ResourcesManager::init(std::string const& resourcesFolder)

@@ -22,6 +22,7 @@ namespace shooter
 
         [[nodiscard]] millis time() const;
         [[nodiscard]] std::int64_t milliseconds() const;
+        [[nodiscard]] float seconds() const;
 
     private:
         millis m_time;

@@ -11,11 +11,13 @@ int main()
     {
         shooter::ResourcesManager::init(RESOURCES_DIR);
 
-        sf::RenderWindow window(sf::VideoMode::getDesktopMode(), GAME_TITLE, sf::Style::None);
-//        window.setFramerateLimit(60);
+        sf::RenderWindow window(sf::VideoMode::getDesktopMode(), GAME_TITLE, sf::Style::Default);
+        window.setFramerateLimit(60);
 
         shooter::Game game(window);
         shooter::InputController input(window, game);
+
+        sf::Clock globalTimer;
 
         while (window.isOpen())
         {
@@ -25,7 +27,7 @@ int main()
                 input.processEvent(event);
             }
 
-            game.update();
+            game.update(globalTimer.restart());
 
             window.clear();
             window.draw(game);

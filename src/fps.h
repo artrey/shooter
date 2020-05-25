@@ -11,14 +11,13 @@ namespace shooter
     public:
         FpsCounter();
 
-        void update() override;
+        void update(sf::Time const& time) override;
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
     private:
         sf::Text m_fpsText;
         sf::Clock m_timer;
-        sf::Clock m_delayTimer;
         int m_frames;
     };
 }

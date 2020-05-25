@@ -19,7 +19,7 @@ shooter::MenuView::MenuView(Game& game)
         }},
     };
 
-    if (m_game.state().milliseconds() > 0)
+    if (!m_game.state().newGame)
     {
         m_options.insert(std::begin(m_options), {
             RESUME_GAME_OPTION, [this]() {
@@ -52,7 +52,7 @@ void shooter::MenuView::draw(sf::RenderTarget& target, sf::RenderStates states) 
     }
 }
 
-void shooter::MenuView::update()
+void shooter::MenuView::update(sf::Time const& time)
 {
     for (auto& choice : m_choices)
     {
@@ -61,7 +61,7 @@ void shooter::MenuView::update()
     m_choices[m_optionIndex].setFillColor(OPTION_SELECTED_COLOR);
 }
 
-void shooter::MenuView::processKey(const sf::Event::KeyEvent& key)
+void shooter::MenuView::processKeyPressed(const sf::Event::KeyEvent& key)
 {
     switch (key.code)
     {
@@ -77,4 +77,8 @@ void shooter::MenuView::processKey(const sf::Event::KeyEvent& key)
         default:
             break;
     }
+}
+
+void shooter::MenuView::processKeyReleased(const sf::Event::KeyEvent& key)
+{
 }

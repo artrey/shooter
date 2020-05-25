@@ -9,6 +9,7 @@ set(HEADER_FILES
         src/constants.h
         src/fps.h
         src/game.h
+        src/game_state.h
         src/input_controller.h
         src/updateable.h
         src/views/view.h

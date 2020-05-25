@@ -13,23 +13,22 @@ shooter::FpsCounter::FpsCounter() : m_frames{0}
     m_timer.restart();
 }
 
-void shooter::FpsCounter::update()
+void shooter::FpsCounter::update(sf::Time const& time)
 {
     m_frames++;
 
-    if (m_delayTimer.getElapsedTime().asSeconds() > 0.2)
+    if (m_timer.getElapsedTime().asSeconds() > 0.2)
     {
         m_fpsText.setString(
-                "FPS: " + std::to_string(static_cast<unsigned>(
-                                                 std::round(static_cast<float>(m_frames) /
-                                                            m_timer.getElapsedTime().asSeconds()))));
+            "FPS: " + std::to_string(static_cast<unsigned>(
+                std::round(static_cast<float>(m_frames) /
+                           m_timer.getElapsedTime().asSeconds()))));
         m_frames = 0;
         m_timer.restart();
-        m_delayTimer.restart();
     }
 }
 
-void shooter::FpsCounter::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void shooter::FpsCounter::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(m_fpsText);
 }

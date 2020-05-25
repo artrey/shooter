@@ -20,9 +20,10 @@ namespace shooter
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
-        void update() override;
+        void update(sf::Time const& time) override;
 
-        void processKey(sf::Event::KeyEvent const &key) override;
+        void processKeyPressed(sf::Event::KeyEvent const &key) override;
+        void processKeyReleased(sf::Event::KeyEvent const &key) override;
     };
 }
 
